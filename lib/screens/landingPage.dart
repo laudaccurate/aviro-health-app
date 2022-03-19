@@ -79,75 +79,10 @@ class _LayoutState extends State<Layout> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // SizedBox(height: _height * 0.005),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              globals.getsidebarOpened
-                                  ? CupertinoIcons.clear
-                                  : CupertinoIcons.bars,
-                              color: Constants.sidebarColor,
-                            ),
-                            iconSize: 26.0,
-                            color: Constants.sidebarColor,
-                            onPressed: () => globals
-                                .setSidebarOpened(!globals.getsidebarOpened),
-                          ),
-                          SizedBox(width: _width * 0.02),
-                          Expanded(
-                            child: Container(
-                              width: _width * 0.3,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(CupertinoIcons.search,
-                                      size: 20, color: Colors.grey[300]),
-                                  SizedBox(width: 15),
-                                  Text(
-                                    'What are you looking for',
-                                    style: GoogleFonts.comfortaa(
-                                        fontSize: 12, color: Colors.grey[300]),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: _width * 0.03),
-                          Icon(
-                            Icons.mark_email_unread,
-                            color: Constants.sidebarColor,
-                            size: 24,
-                          ),
-                          SizedBox(width: _width * 0.02),
-                          Icon(
-                            CupertinoIcons.bell_fill,
-                            color: Constants.sidebarColor,
-                            size: 24,
-                          ),
-                          SizedBox(width: _width * 0.02),
-                          Text(
-                            'Marvin McKinney',
-                            style: GoogleFonts.comfortaa(
-                              color: Colors.grey[500],
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                            ),
-                          ),
-                          SizedBox(width: _width * 0.008),
-                          CircleAvatar(
-                            radius: _width * 0.011,
-                            backgroundImage: NetworkImage(
-                              'https://source.unsplash.com/random/200x200?sig=1',
-                            ),
-                          ),
-                        ],
-                      ),
+                      Header(),
+                      SizedBox(height: _height* 0.01),
+                      Expanded(child: widget.screen)
+                      
                     ],
                   ),
                 ),
@@ -157,6 +92,90 @@ class _LayoutState extends State<Layout> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  const Header({
+    Key key,
+    
+  }) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
+    final globals = Provider.of<Globals>(context);
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          icon: Icon(
+            globals.getsidebarOpened
+                ? CupertinoIcons.clear
+                : CupertinoIcons.bars,
+            color: Constants.sidebarColor,
+          ),
+          iconSize: 26.0,
+          color: Constants.sidebarColor,
+          onPressed: () => globals
+              .setSidebarOpened(!globals.getsidebarOpened),
+        ),
+        SizedBox(width: _width * 0.02),
+        Expanded(
+          child: Container(
+            width: _width * 0.3,
+            padding: EdgeInsets.symmetric(
+                horizontal: 15, vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              children: [
+                Icon(CupertinoIcons.search,
+                    size: 20, color: Colors.grey[300]),
+                SizedBox(width: 15),
+                Text(
+                  'What are you looking for',
+                  style: GoogleFonts.comfortaa(
+                      fontSize: 12, color: Colors.grey[300]),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(width: _width * 0.03),
+        Icon(
+          Icons.mark_email_unread,
+          color: Constants.sidebarColor,
+          size: 24,
+        ),
+        SizedBox(width: _width * 0.02),
+        Icon(
+          CupertinoIcons.bell_fill,
+          color: Constants.sidebarColor,
+          size: 24,
+        ),
+        SizedBox(width: _width * 0.02),
+        Text(
+          'Marvin McKinney',
+          style: GoogleFonts.comfortaa(
+            color: Colors.grey[500],
+            fontWeight: FontWeight.w500,
+            fontSize: 13,
+          ),
+        ),
+        SizedBox(width: _width * 0.008),
+        CircleAvatar(
+          radius: _width * 0.011,
+          backgroundImage: NetworkImage(
+            'https://source.unsplash.com/random/200x200?sig=1',
+          ),
+        ),
+      ],
     );
   }
 }
@@ -181,8 +200,8 @@ class Sidebar extends StatelessWidget {
           SizedBox(height: _height * 0.1),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(8),
-            height: _height * 0.08,
+            padding: EdgeInsets.all(globals.getsidebarOpened ? 8 : 4),
+            height: _height * (globals.getsidebarOpened ? 0.08 : 0.06),
             decoration: BoxDecoration(
              color: Colors.white  
             ),
@@ -195,7 +214,7 @@ class Sidebar extends StatelessWidget {
           SizedBox(height: _height * 0.03),
           Constants.menus[2],
           SizedBox(height: _height * 0.02),
-          Divider(color: Colors.grey[300]),
+          Divider(color: Colors.grey[400], thickness: 0.7,),
           SizedBox(height: _height * 0.02),
           Constants.menus[3],
           SizedBox(height: _height * 0.03),

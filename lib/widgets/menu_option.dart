@@ -41,28 +41,39 @@ class _MenuOptionsState extends State<MenuOptions> {
     }
 
     return MouseRegion(
-      cursor: MouseCursor.defer,
+      cursor: SystemMouseCursors.click,
       onEnter: onHover,
       onExit: onHover,
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(widget.icon, color: Colors.white, size:showRegion ? 20: 17),
-            if (globals.getsidebarOpened) ...[
-              SizedBox(width: 12),
-              Text(
-                widget.label,
-                style: GoogleFonts.comfortaa(
-                  color: Colors.white,
-                  fontSize: showRegion ? 14 : 12,
-                  fontWeight: showRegion ? FontWeight.bold : FontWeight.w600,
-                ),
-              )
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => widget.formWidget,
+            ),
+          );
+        },
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          padding: const EdgeInsets.all(15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(widget.icon,
+                  color: Colors.white, size: showRegion ? 20 : 17),
+              if (globals.getsidebarOpened) ...[
+                SizedBox(width: 12),
+                Text(
+                  widget.label,
+                  style: GoogleFonts.comfortaa(
+                    color: Colors.white,
+                    fontSize: showRegion ? 14 : 12,
+                    fontWeight: showRegion ? FontWeight.bold : FontWeight.w600,
+                  ),
+                )
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
