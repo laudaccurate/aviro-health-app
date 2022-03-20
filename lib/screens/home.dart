@@ -97,15 +97,24 @@ class _HomeState extends State<Home> {
                                   const Tab(text: 'Yearly'),
                                 ],
                               ),
-                            ), SizedBox(width: 15),
-                            Icon(Icons.more_vert_outlined, size: 26, color: Constants.sidebarColor,)
+                            ),
+                            SizedBox(width: 15),
+                            Icon(
+                              Icons.more_vert_outlined,
+                              size: 26,
+                              color: Constants.sidebarColor,
+                            )
                           ],
                         ))
                       ],
                     ),
-                    Expanded(child: Padding(
+                    Expanded(
+                        child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: BigChart(color: 'D',kpiCOde: 'D',),
+                      child: BigChart(
+                        color: 'D',
+                        kpiCOde: 'D',
+                      ),
                     ))
                   ]),
                 ),
@@ -113,6 +122,7 @@ class _HomeState extends State<Home> {
               SizedBox(width: _width * 0.025),
               Container(
                 margin: EdgeInsets.only(right: 15),
+                padding: EdgeInsets.all(20),
                 width: _width * 0.17,
                 height: _height * 0.4,
                 decoration: BoxDecoration(
@@ -120,6 +130,36 @@ class _HomeState extends State<Home> {
                   borderRadius: BorderRadius.circular(
                     20,
                   ),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Facility Near You',
+                          style: GoogleFonts.comfortaa(
+                              fontSize: 13, fontWeight: FontWeight.w700),
+                        ),
+                        Icon(
+                          Icons.more_vert_outlined,
+                          size: 21,
+                          color: Constants.sidebarColor,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 15.0),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ],
@@ -132,13 +172,77 @@ class _HomeState extends State<Home> {
                 child: Container(
                   // width: _width * 0.45,
                   margin: EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   height: _height * 0.25,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Constants.sidebarColor,
                     borderRadius: BorderRadius.circular(
                       20,
                     ),
                   ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 22,
+                            vertical: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Do you need a \nCounsellor?',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.nunito(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Know your STATUS early \nvia self-testing',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.nunito(
+                                  color: Colors.grey[200],
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              SizedBox(height: 23),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: Constants.shadow,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 10,
+                                ),
+                                child: Text(
+                                  'Register Now',
+                                  style: GoogleFonts.comfortaa(
+                                    color: Constants.sidebarColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: _height * 0.22,
+                          width: _width * 0.15,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage("assets/images/nurse.png"),
+                            fit: BoxFit.fill,
+                          )),
+                        )
+                      ]),
                 ),
               ),
               SizedBox(width: _width * 0.025),
@@ -152,9 +256,92 @@ class _HomeState extends State<Home> {
                     20,
                   ),
                 ),
+                padding: EdgeInsets.all(12),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Registered Users',
+                          style: GoogleFonts.comfortaa(
+                              fontSize: 13, fontWeight: FontWeight.w700),
+                        ),
+                        Icon(
+                          Icons.more_vert_outlined,
+                          size: 21,
+                          color: Constants.sidebarColor,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 15.0),
+                    Expanded(
+                        child: ListView(
+                      children: [
+                        RegisteredUser(index: 2, name: 'Jane Cooper',),
+                        RegisteredUser(index: 1, name: 'Jenny Wilson',),
+                        RegisteredUser(index: 3, name: 'Arlene McCoy',),
+                      ],
+                    ))
+                  ],
+                ),
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class RegisteredUser extends StatelessWidget {
+  final int index;
+  final String name;
+  const RegisteredUser({
+    Key key, this.index, this.name,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 16,
+            backgroundImage: NetworkImage(
+              'https://source.unsplash.com/random/200x200?sig=$index',
+            ),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: GoogleFonts.comfortaa(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: Constants.sidebarColor),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    'Last Online ${index + 2} Hours ago',
+                    style: GoogleFonts.comfortaa(
+                      fontSize: 8,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                ]),
+          ),
+          Icon(
+            CupertinoIcons.paperplane,
+            color: Constants.sidebarColor,
+            size: 17,
+          )
         ],
       ),
     );

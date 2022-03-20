@@ -41,6 +41,7 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   flash: ^2.0.1
   flutter_staggered_animations: ^1.0.0
+  syncfusion_flutter_calendar: ^19.4.56
   google_fonts: ^2.3.1
   animations: ^2.0.2
   flappy_search_bar_ns: ^2.0.2

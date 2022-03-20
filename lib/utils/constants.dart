@@ -1,6 +1,7 @@
 // @dart=2.9
 // ignore_for_file: prefer_const_constructors
 
+import 'package:aviro_health_app/screens/calendar.dart';
 import 'package:aviro_health_app/widgets/menu_option.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,8 +72,8 @@ class Constants {
       icon: CupertinoIcons.calendar,
       color: Colors.purpleAccent,
       label: 'Calendar',
-      description: 'Caalendar',
-      formWidget: Container(),
+      description: 'Calendar',
+      formWidget: CalendarScreen(),
     ),
     MenuOptions(
       icon: CupertinoIcons.settings,

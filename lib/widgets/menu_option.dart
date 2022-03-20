@@ -3,10 +3,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:aviro_health_app/providers/globals.dart';
-import 'package:aviro_health_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:animations/animations.dart';
 import 'package:provider/provider.dart';
 
 class MenuOptions extends StatefulWidget {
