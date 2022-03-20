@@ -3,6 +3,7 @@
 
 import 'package:aviro_health_app/providers/globals.dart';
 import 'package:aviro_health_app/screens/calendar.dart';
+import 'package:aviro_health_app/screens/chats.dart';
 import 'package:aviro_health_app/screens/home.dart';
 import 'package:aviro_health_app/screens/splashScreen.dart';
 import 'package:aviro_health_app/utils/connection_service.dart';
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Aviro Health App',
         // theme: widget.themeProvider.themeData(),
-        home: CalendarScreen(),
+        home: ChatScreen(),
       ),
     );
   }

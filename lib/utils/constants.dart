@@ -2,6 +2,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:aviro_health_app/screens/calendar.dart';
+import 'package:aviro_health_app/screens/chats.dart';
+import 'package:aviro_health_app/screens/home.dart';
 import 'package:aviro_health_app/widgets/menu_option.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,14 +61,14 @@ class Constants {
       color: Colors.cyan,
       label: 'Home',
       description: 'Home',
-      formWidget: Container(),
+      formWidget: Home(),
     ),
     MenuOptions(
       icon: CupertinoIcons.profile_circled,
       color: Colors.amber,
       label: 'Profile',
       description: 'Profile',
-      formWidget: Container(),
+      formWidget: ChatScreen(),
     ),
     MenuOptions(
       icon: CupertinoIcons.calendar,
